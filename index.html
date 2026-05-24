@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>মারকাযু উলুমিল কুরআন — ফলাফল পোর্টাল</title>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Noto+Serif+Bengali:wght@400;600;700&family=Cinzel:wght@600;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green-deep: #1a3a2a;
+    --green-mid: #2d6a4f;
+    --green-light: #40916c;
+    --gold: #c9a84c;
+    --gold-light: #e8c97a;
+    --cream: #fdf6e3;
+    --cream-dark: #f0e6c8;
+    --text-dark: #1a1a1a;
+    --text-mid: #3a3a3a;
+    --white: #ffffff;
+    --shadow: 0 8px 40px rgba(0,0,0,0.18);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Noto Serif Bengali', serif;
+    background: var(--green-deep);
+    min-height: 100vh;
+    color: var(--text-dark);
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  /* Geometric pattern background */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      repeating-linear-gradient(45deg, transparent, transparent 30px, rgba(201,168,76,0.04) 30px, rgba(201,168,76,0.04) 31px),
+      repeating-linear-gradient(-45deg, transparent, transparent 30px, rgba(201,168,76,0.04) 30px, rgba(201,168,76,0.04) 31px);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ===== HEADER ===== */
+  header {
+    position: relative;
+    z-index: 10;
+    background: linear-gradient(135deg, var(--green-deep) 0%, #0f2419 100%);
+    border-bottom: 3px solid var(--gold);
+    padding: 28px 20px 22px;
+    text-align: center;
+  }
+
+  .header-ornament {
+    font-family: 'Amiri', serif;
+    font-size: 1.5rem;
+    color: var(--gold);
+    letter-spacing: 6px;
+    opacity: 0.8;
+    margin-bottom: 8px;
+    animation: fadeDown 1s ease both;
+  }
+
+  .madrasa-name-ar {
+    font-family: 'Amiri', serif;
+    font-size: 2.4rem;
+    color: var(--gold-light);
+    line-height: 1.3;
+    animation: fadeDown 1s ease 0.1s both;
+  }
+
+  .madrasa-name-bn {
+    font-family: 'Noto Serif Bengali', serif;
+    font-size: 1.15rem;
+    color: var(--cream-dark);
+    font-weight: 600;
+    margin-top: 4px;
+    letter-spacing: 1px;
+    animation: fadeDown 1s ease 0.2s both;
+  }
+
+  .header-sub {
+    font-size: 0.85rem;
+    color: rgba(201,168,76,0.7);
+    margin-top: 10px;
+    letter-spacing: 2px;
+    animation: fadeDown 1s ease 0.3s both;
+  }
+
+  .gold-line {
+    width: 120px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 12px auto 0;
+  }
+
+  /* ===== NAV TABS ===== */
+  .tab-bar {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    gap: 0;
+    background: rgba(0,0,0,0.3);
+    border-bottom: 1px solid rgba(201,168,76,0.3);
+  }
+
+  .tab-btn {
+    padding: 14px 36px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-family: 'Noto Serif Bengali', serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: rgba(253,246,227,0.6);
+    border-bottom: 3px solid transparent;
+    transition: all 0.3s ease;
+    letter-spacing: 0.5px;
+  }
+
+  .tab-btn:hover { color: var(--cream); }
+
+  .tab-btn.active {
+    color: var(--gold-light);
+    border-bottom-color: var(--gold);
+    background: rgba(201,168,76,0.08);
+  }
+
+  /* ===== MAIN CONTENT ===== */
+  main {
+    position: relative;
+    z-index: 5;
+    max-width: 820px;
+    margin: 48px auto;
+    padding: 0 16px 60px;
+  }
+
+  .panel {
+    display: none;
+    animation: fadeUp 0.5s ease both;
+  }
+  .panel.active { display: block; }
+
+  .card {
+    background: var(--cream);
+    border-radius: 12px;
+    box-shadow: var(--shadow), 0 0 0 1px rgba(201,168,76,0.25);
+    overflow: hidden;
+  }
+
+  .card-header {
+    background: linear-gradient(135deg, var(--green-mid), var(--green-deep));
+    padding: 22px 28px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    border-bottom: 2px solid var(--gold);
+  }
+
+  .card-icon {
+    font-size: 1.8rem;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+  }
+
+  .card-title {
+    font-family: 'Noto Serif Bengali', serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--gold-light);
+  }
+
+  .card-subtitle {
+    font-size: 0.8rem;
+    color: rgba(253,246,227,0.65);
+    margin-top: 2px;
+  }
+
+  .card-body { padding: 32px 28px; }
+
+  /* ===== FORM ELEMENTS ===== */
+  .form-group { margin-bottom: 22px; }
+
+  label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--green-deep);
+    font-size: 0.95rem;
+  }
+
+  input[type="text"], input[type="password"], select, textarea {
+    width: 100%;
+    padding: 12px 16px;
+    border: 2px solid #d4c9a0;
+    border-radius: 8px;
+    font-family: 'Noto Serif Bengali', serif;
+    font-size: 1rem;
+    background: #fff;
+    color: var(--text-dark);
+    transition: border-color 0.25s, box-shadow 0.25s;
+    outline: none;
+  }
+
+  input:focus, select:focus, textarea:focus {
+    border-color: var(--green-mid);
+    box-shadow: 0 0 0 3px rgba(45,106,79,0.12);
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+  }
+
+  /* ===== BUTTONS ===== */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 13px 30px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-family: 'Noto Serif Bengali', serif;
+    font-size: 1rem;
+    font-weight: 700;
+    transition: all 0.25s ease;
+    letter-spacing: 0.3px;
+  }
+
+  .btn-primary {
+    background: linear-gradient(135deg, var(--green-mid), var(--green-deep));
+    color: var(--gold-light);
+    box-shadow: 0 4px 16px rgba(45,106,79,0.35);
+    border: 1px solid rgba(201,168,76,0.3);
+    width: 100%;
+    justify-content: center;
+    font-size: 1.05rem;
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(45,106,79,0.45);
+  }
+
+  .btn-gold {
+    background: linear-gradient(135deg, var(--gold), #a07830);
+    color: var(--green-deep);
+    box-shadow: 0 4px 16px rgba(201,168,76,0.35);
+    width: 100%;
+    justify-content: center;
+    font-size: 1.05rem;
+  }
+
+  .btn-gold:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(201,168,76,0.5);
+  }
+
+  .btn-sm {
+    padding: 8px 18px;
+    font-size: 0.85rem;
+    border-radius: 6px;
+  }
+
+  /* ===== RESULT DISPLAY ===== */
+  .result-box {
+    display: none;
+    margin-top: 28px;
+    animation: fadeUp 0.5s ease both;
+  }
+  .result-box.show { display: block; }
+
+  .result-header {
+    background: linear-gradient(135deg, var(--green-deep), #0f2419);
+    border-radius: 10px 10px 0 0;
+    padding: 20px 24px;
+    border: 1px solid rgba(201,168,76,0.4);
+    border-bottom: none;
+    text-align: center;
+  }
+
+  .student-name {
+    font-family: 'Amiri', serif;
+    font-size: 1.6rem;
+    color: var(--gold-light);
+    margin-bottom: 4px;
+  }
+
+  .student-meta {
+    font-size: 0.85rem;
+    color: rgba(253,246,227,0.7);
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 8px;
+  }
+
+  .student-meta span {
+    background: rgba(201,168,76,0.15);
+    padding: 3px 12px;
+    border-radius: 20px;
+    border: 1px solid rgba(201,168,76,0.3);
+  }
+
+  .result-table-wrap {
+    border: 1px solid rgba(201,168,76,0.3);
+    border-top: none;
+    border-radius: 0 0 10px 10px;
+    overflow: hidden;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+  }
+
+  thead { background: var(--green-mid); }
+  thead th {
+    padding: 12px 16px;
+    color: var(--gold-light);
+    font-weight: 700;
+    text-align: center;
+    font-size: 0.9rem;
+    border-right: 1px solid rgba(255,255,255,0.1);
+  }
+
+  tbody tr:nth-child(even) { background: #f5edcc; }
+  tbody tr:nth-child(odd) { background: var(--cream); }
+  tbody tr:hover { background: #e8ddb0; }
+
+  tbody td {
+    padding: 11px 16px;
+    text-align: center;
+    border-right: 1px solid #d4c9a0;
+    border-bottom: 1px solid #d4c9a0;
+    color: var(--text-mid);
+  }
+
+  tbody td:first-child { text-align: left; font-weight: 600; color: var(--green-deep); }
+
+  .grade-badge {
+    display: inline-block;
+    padding: 3px 12px;
+    border-radius: 20px;
+    font-weight: 700;
+    font-size: 0.9rem;
+  }
+  .grade-A { background: #d4edda; color: #155724; }
+  .grade-B { background: #cce5ff; color: #004085; }
+  .grade-C { background: #fff3cd; color: #856404; }
+  .grade-D { background: #f8d7da; color: #721c24; }
+  .grade-F { background: #e2e3e5; color: #383d41; }
+
+  .result-summary {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-top: 16px;
+  }
+
+  .summary-card {
+    background: linear-gradient(135deg, var(--green-mid), var(--green-deep));
+    border-radius: 10px;
+    padding: 16px;
+    text-align: center;
+    border: 1px solid rgba(201,168,76,0.3);
+  }
+
+  .summary-label { font-size: 0.78rem; color: rgba(253,246,227,0.65); margin-bottom: 4px; }
+  .summary-value { font-size: 1.5rem; font-weight: 700; color: var(--gold-light); font-family: 'Cinzel', serif; }
+
+  /* ===== ADMIN PANEL ===== */
+  .admin-gate { }
+
+  .paste-area {
+    min-height: 160px;
+    resize: vertical;
+    font-family: monospace;
+    font-size: 0.88rem;
+    line-height: 1.6;
+  }
+
+  .help-text {
+    font-size: 0.8rem;
+    color: #666;
+    margin-top: 6px;
+    font-style: italic;
+  }
+
+  .preview-table {
+    margin-top: 20px;
+    overflow-x: auto;
+    border-radius: 8px;
+    border: 1px solid #d4c9a0;
+    display: none;
+  }
+  .preview-table.show { display: block; }
+
+  .preview-table table { font-size: 0.85rem; }
+  .preview-table thead { background: var(--green-light); }
+  .preview-table thead th { padding: 10px 14px; }
+  .preview-table tbody td { padding: 9px 14px; }
+
+  .alert {
+    padding: 14px 18px;
+    border-radius: 8px;
+    font-size: 0.92rem;
+    margin-top: 16px;
+    display: none;
+  }
+  .alert.show { display: flex; align-items: center; gap: 10px; }
+  .alert-success { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+  .alert-error { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+  .alert-info { background: #cce5ff; color: #004085; border: 1px solid #b8daff; }
+
+  .saved-list { margin-top: 28px; }
+  .saved-list-title {
+    font-weight: 700;
+    color: var(--green-deep);
+    margin-bottom: 12px;
+    font-size: 1rem;
+    border-bottom: 2px solid var(--gold);
+    padding-bottom: 8px;
+  }
+
+  .saved-entry {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 14px;
+    background: #fff;
+    border: 1px solid #d4c9a0;
+    border-radius: 6px;
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+  }
+
+  .saved-entry .meta { color: var(--text-mid); }
+  .saved-entry .count { color: var(--green-mid); font-weight: 600; }
+
+  .btn-danger {
+    background: #dc3545;
+    color: white;
+    padding: 6px 14px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    font-size: 0.78rem;
+    font-family: 'Noto Serif Bengali', serif;
+  }
+  .btn-danger:hover { background: #c82333; }
+
+  .divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #d4c9a0, transparent);
+    margin: 28px 0;
+  }
+
+  /* ===== EMPTY STATE ===== */
+  .empty-state {
+    text-align: center;
+    padding: 48px 20px;
+    color: #888;
+  }
+  .empty-state .icon { font-size: 3rem; margin-bottom: 12px; }
+  .empty-state p { font-size: 0.95rem; }
+
+  /* ===== NOT FOUND ===== */
+  .not-found {
+    text-align: center;
+    padding: 40px;
+    display: none;
+  }
+  .not-found.show { display: block; }
+  .not-found .icon { font-size: 3.5rem; }
+  .not-found h3 { color: var(--green-deep); margin: 12px 0 6px; font-size: 1.2rem; }
+  .not-found p { color: #666; font-size: 0.9rem; }
+
+  /* ===== FOOTER ===== */
+  footer {
+    position: relative;
+    z-index: 5;
+    text-align: center;
+    padding: 24px;
+    color: rgba(253,246,227,0.4);
+    font-size: 0.78rem;
+    border-top: 1px solid rgba(201,168,76,0.15);
+  }
+
+  /* ===== ANIMATIONS ===== */
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 600px) {
+    .form-row { grid-template-columns: 1fr; }
+    .result-summary { grid-template-columns: 1fr 1fr; }
+    .card-body { padding: 22px 16px; }
+    .madrasa-name-ar { font-size: 1.7rem; }
+    .tab-btn { padding: 12px 18px; font-size: 0.9rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-ornament">﷽</div>
+  <div class="madrasa-name-ar">مرکز علوم القرآن</div>
+  <div class="madrasa-name-bn">মারকাযু উলুমিল কুরআন</div>
+  <div class="gold-line"></div>
+  <div class="header-sub">অনলাইন ফলাফল পোর্টাল</div>
+</header>
+
+<!-- TAB BAR -->
+<div class="tab-bar">
+  <button class="tab-btn active" onclick="switchTab('result')">📋 ফলাফল দেখুন</button>
+  <button class="tab-btn" onclick="switchTab('admin')">🔐 অ্যাডমিন প্যানেল</button>
+</div>
+
+<!-- MAIN -->
+<main>
+
+  <!-- ===== RESULT PANEL ===== -->
+  <div class="panel active" id="panel-result">
+    <div class="card">
+      <div class="card-header">
+        <span class="card-icon">📋</span>
+        <div>
+          <div class="card-title">ফলাফল অনুসন্ধান</div>
+          <div class="card-subtitle">রোল নম্বর ও শ্রেণি দিয়ে ফলাফল দেখুন</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="form-row">
+          <div class="form-group">
+            <label>শ্রেণি (Class) *</label>
+            <select id="search-class">
+              <option value="">— শ্রেণি বেছে নিন —</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>পরীক্ষা *</label>
+            <select id="search-exam">
+              <option value="">— পরীক্ষা বেছে নিন —</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>রোল নম্বর *</label>
+          <input type="text" id="search-roll" placeholder="যেমন: ১০১" />
+        </div>
+        <button class="btn btn-primary" onclick="searchResult()">🔍 &nbsp;ফলাফল দেখুন</button>
+
+        <!-- Not Found -->
+        <div class="not-found" id="not-found">
+          <div class="icon">😔</div>
+          <h3>ফলাফল পাওয়া যায়নি</h3>
+          <p>রোল নম্বর বা শ্রেণি সঠিক আছে কিনা যাচাই করুন।</p>
+        </div>
+
+        <!-- Result Box -->
+        <div class="result-box" id="result-box">
+          <div class="result-header">
+            <div class="student-name" id="res-name">—</div>
+            <div class="student-meta">
+              <span id="res-roll-display">রোল: —</span>
+              <span id="res-class-display">শ্রেণি: —</span>
+              <span id="res-exam-display">পরীক্ষা: —</span>
+            </div>
+          </div>
+          <div class="result-table-wrap">
+            <table>
+              <thead>
+                <tr id="result-thead"></tr>
+              </thead>
+              <tbody id="result-tbody"></tbody>
+            </table>
+          </div>
+          <div class="result-summary" id="result-summary"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== ADMIN PANEL ===== -->
+  <div class="panel" id="panel-admin">
+    <div class="card admin-gate" id="admin-login-card">
+      <div class="card-header">
+        <span class="card-icon">🔐</span>
+        <div>
+          <div class="card-title">অ্যাডমিন লগইন</div>
+          <div class="card-subtitle">শুধুমাত্র অনুমোদিত ব্যক্তির জন্য</div>
+        </div>
+      </div>
+      <div class="card-body" style="max-width:380px;margin:0 auto;">
+        <div class="form-group">
+          <label>পাসওয়ার্ড</label>
+          <input type="password" id="admin-pass" placeholder="পাসওয়ার্ড দিন" onkeydown="if(event.key==='Enter')adminLogin()" />
+        </div>
+        <button class="btn btn-primary" onclick="adminLogin()">🔓 &nbsp;প্রবেশ করুন</button>
+        <div class="alert alert-error" id="login-error">❌ পাসওয়ার্ড সঠিক নয়</div>
+        <p class="help-text" style="text-align:center;margin-top:16px;">ডিফল্ট পাসওয়ার্ড: <strong>madrasa123</strong></p>
+      </div>
+    </div>
+
+    <div id="admin-panel-main" style="display:none;">
+      <!-- Upload Section -->
+      <div class="card" style="margin-bottom:24px;">
+        <div class="card-header">
+          <span class="card-icon">📤</span>
+          <div>
+            <div class="card-title">রেজাল্ট আপলোড</div>
+            <div class="card-subtitle">ওয়ার্ড থেকে টেবিল কপি করে এখানে পেস্ট করুন</div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="form-row">
+            <div class="form-group">
+              <label>শ্রেণি</label>
+              <input type="text" id="upload-class" placeholder="যেমন: হিফজ ১ম বর্ষ" />
+            </div>
+            <div class="form-group">
+              <label>পরীক্ষার নাম</label>
+              <input type="text" id="upload-exam" placeholder="যেমন: মধ্যবর্তী পরীক্ষা ২০২৫" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>টেবিল পেস্ট করুন</label>
+            <textarea class="paste-area" id="paste-area"
+              placeholder="Word থেকে টেবিল কপি করে এখানে Ctrl+V করুন।&#10;&#10;প্রথম সারিতে হেডার থাকতে হবে।&#10;যেমন: রোল | নাম | আরবি | বাংলা | গণিত | মোট | গ্রেড"
+              oninput="parseTable()"></textarea>
+            <p class="help-text">💡 Word-এ টেবিল সিলেক্ট করুন → Ctrl+C → এখানে Ctrl+V করুন</p>
+          </div>
+
+          <!-- Preview -->
+          <div class="preview-table" id="preview-table">
+            <table>
+              <thead><tr id="preview-thead"></tr></thead>
+              <tbody id="preview-tbody"></tbody>
+            </table>
+          </div>
+
+          <div class="alert" id="parse-alert"></div>
+
+          <div style="margin-top:20px;">
+            <button class="btn btn-gold" onclick="saveResults()" id="save-btn" style="display:none;">
+              💾 &nbsp;রেজাল্ট সংরক্ষণ করুন
+            </button>
+          </div>
+          <div class="alert" id="save-alert"></div>
+        </div>
+      </div>
+
+      <!-- Saved Results -->
+      <div class="card">
+        <div class="card-header">
+          <span class="card-icon">🗂️</span>
+          <div>
+            <div class="card-title">সংরক্ষিত ফলাফল</div>
+            <div class="card-subtitle">এখন পর্যন্ত আপলোড করা সব ফলাফল</div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div id="saved-list-content"></div>
+          <div style="margin-top:20px;padding-top:16px;border-top:1px solid #d4c9a0;">
+            <button class="btn btn-danger" style="width:auto;padding:10px 22px;" onclick="clearAll()">🗑️ সব রেজাল্ট মুছুন</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  মারকাযু উলুমিল কুরআন — অনলাইন ফলাফল পোর্টাল &nbsp;|&nbsp; সর্বস্বত্ব সংরক্ষিত
+</footer>
+
+<script>
+// ========== STATE ==========
+const ADMIN_PASS = 'madrasa123';
+let parsedRows = [];
+let parsedHeaders = [];
+
+// ========== TAB SWITCH ==========
+function switchTab(tab) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  event.target.classList.add('active');
+  document.getElementById('panel-' + tab).classList.add('active');
+  if (tab === 'admin') renderSavedList();
+}
+
+// ========== ADMIN LOGIN ==========
+function adminLogin() {
+  const pass = document.getElementById('admin-pass').value;
+  const err = document.getElementById('login-error');
+  if (pass === ADMIN_PASS) {
+    document.getElementById('admin-login-card').style.display = 'none';
+    document.getElementById('admin-panel-main').style.display = 'block';
+    renderSavedList();
+    populateSearchDropdowns();
+  } else {
+    err.classList.add('show');
+    setTimeout(() => err.classList.remove('show'), 3000);
+  }
+}
+
+// ========== PARSE TABLE FROM PASTE ==========
+function parseTable() {
+  const raw = document.getElementById('paste-area').value.trim();
+  const previewTable = document.getElementById('preview-table');
+  const parseAlert = document.getElementById('parse-alert');
+  const saveBtn = document.getElementById('save-btn');
+  parsedRows = []; parsedHeaders = [];
+
+  if (!raw) {
+    previewTable.classList.remove('show');
+    saveBtn.style.display = 'none';
+    return;
+  }
+
+  const lines = raw.split('\n').map(l => l.trim()).filter(l => l.length > 0);
+  if (lines.length < 2) {
+    showAlert(parseAlert, 'alert-error', '❌ কমপক্ষে ২টি সারি (হেডার + ১টি ডেটা) থাকতে হবে');
+    return;
+  }
+
+  // Split by tab (Word paste uses tabs)
+  const splitRow = (line) => {
+    let cols = line.split('\t').map(c => c.trim());
+    if (cols.length < 2) cols = line.split('|').map(c => c.trim()).filter(c => c);
+    return cols;
+  };
+
+  parsedHeaders = splitRow(lines[0]);
+  parsedRows = lines.slice(1).map(l => splitRow(l)).filter(r => r.some(c => c));
+
+  if (parsedHeaders.length < 2) {
+    showAlert(parseAlert, 'alert-error', '❌ হেডার সারি সনাক্ত করা যায়নি। প্রথম সারিতে হেডার থাকতে হবে।');
+    return;
+  }
+
+  // Render preview
+  const pThead = document.getElementById('preview-thead');
+  const pTbody = document.getElementById('preview-tbody');
+  pThead.innerHTML = parsedHeaders.map(h => `<th>${h}</th>`).join('');
+  pTbody.innerHTML = parsedRows.slice(0, 5).map(r =>
+    `<tr>${parsedHeaders.map((_, i) => `<td>${r[i] || ''}</td>`).join('')}</tr>`
+  ).join('');
+  previewTable.classList.add('show');
+
+  showAlert(parseAlert, 'alert-success', `✅ ${parsedRows.length}টি শিক্ষার্থীর তথ্য পাওয়া গেছে। সঠিক থাকলে সংরক্ষণ করুন।`);
+  saveBtn.style.display = 'flex';
+}
+
+// ========== SAVE RESULTS ==========
+function saveResults() {
+  const cls = document.getElementById('upload-class').value.trim();
+  const exam = document.getElementById('upload-exam').value.trim();
+  const saveAlert = document.getElementById('save-alert');
+
+  if (!cls || !exam) {
+    showAlert(saveAlert, 'alert-error', '❌ শ্রেণি ও পরীক্ষার নাম দিন');
+    return;
+  }
+  if (parsedRows.length === 0) {
+    showAlert(saveAlert, 'alert-error', '❌ কোনো ডেটা নেই');
+    return;
+  }
+
+  const key = `result_${cls}_${exam}`;
+  const data = { cls, exam, headers: parsedHeaders, rows: parsedRows, savedAt: new Date().toLocaleDateString('bn-BD') };
+  localStorage.setItem(key, JSON.stringify(data));
+
+  showAlert(saveAlert, 'alert-success', `✅ "${cls}" — "${exam}" এর ${parsedRows.length}টি ফলাফল সংরক্ষিত হয়েছে!`);
+  document.getElementById('paste-area').value = '';
+  document.getElementById('preview-table').classList.remove('show');
+  document.getElementById('save-btn').style.display = 'none';
+  parsedRows = []; parsedHeaders = [];
+  renderSavedList();
+  populateSearchDropdowns();
+}
+
+// ========== RENDER SAVED LIST ==========
+function renderSavedList() {
+  const container = document.getElementById('saved-list-content');
+  const keys = Object.keys(localStorage).filter(k => k.startsWith('result_'));
+
+  if (keys.length === 0) {
+    container.innerHTML = `<div class="empty-state"><div class="icon">📭</div><p>এখনো কোনো ফলাফল আপলোড করা হয়নি।</p></div>`;
+    return;
+  }
+
+  container.innerHTML = `<div class="saved-list-title">মোট ${keys.length}টি ফলাফল সেট</div>` +
+    keys.map(k => {
+      const d = JSON.parse(localStorage.getItem(k));
+      return `<div class="saved-entry">
+        <div>
+          <div class="meta"><strong>${d.cls}</strong> — ${d.exam}</div>
+          <div class="count">${d.rows.length}জন শিক্ষার্থী &nbsp;|&nbsp; সংরক্ষিত: ${d.savedAt}</div>
+        </div>
+        <button class="btn-danger" onclick="deleteResult('${k}')">মুছুন</button>
+      </div>`;
+    }).join('');
+}
+
+function deleteResult(key) {
+  if (confirm('এই ফলাফল মুছে ফেলবেন?')) {
+    localStorage.removeItem(key);
+    renderSavedList();
+    populateSearchDropdowns();
+  }
+}
+
+function clearAll() {
+  if (confirm('সব ফলাফল মুছে ফেলবেন? এই কাজ পূর্বাবস্থায় ফেরানো যাবে না।')) {
+    Object.keys(localStorage).filter(k => k.startsWith('result_')).forEach(k => localStorage.removeItem(k));
+    renderSavedList();
+    populateSearchDropdowns();
+  }
+}
+
+// ========== POPULATE SEARCH DROPDOWNS ==========
+function populateSearchDropdowns() {
+  const keys = Object.keys(localStorage).filter(k => k.startsWith('result_'));
+  const classes = [...new Set(keys.map(k => JSON.parse(localStorage.getItem(k)).cls))];
+  const exams  = [...new Set(keys.map(k => JSON.parse(localStorage.getItem(k)).exam))];
+
+  const clsSel = document.getElementById('search-class');
+  const examSel = document.getElementById('search-exam');
+
+  clsSel.innerHTML = '<option value="">— শ্রেণি বেছে নিন —</option>' +
+    classes.map(c => `<option value="${c}">${c}</option>`).join('');
+  examSel.innerHTML = '<option value="">— পরীক্ষা বেছে নিন —</option>' +
+    exams.map(e => `<option value="${e}">${e}</option>`).join('');
+}
+
+// ========== SEARCH RESULT ==========
+function searchResult() {
+  const cls = document.getElementById('search-class').value;
+  const exam = document.getElementById('search-exam').value;
+  const roll = document.getElementById('search-roll').value.trim();
+  const resultBox = document.getElementById('result-box');
+  const notFound = document.getElementById('not-found');
+
+  resultBox.classList.remove('show');
+  notFound.classList.remove('show');
+
+  if (!cls || !exam || !roll) {
+    alert('শ্রেণি, পরীক্ষা ও রোল নম্বর সবই দিন।');
+    return;
+  }
+
+  const key = `result_${cls}_${exam}`;
+  const raw = localStorage.getItem(key);
+  if (!raw) { notFound.classList.add('show'); return; }
+
+  const data = JSON.parse(raw);
+  const headers = data.headers;
+
+  // Find roll column index (flexible)
+  const rollIdx = headers.findIndex(h => /রোল|roll/i.test(h));
+  const nameIdx = headers.findIndex(h => /নাম|name/i.test(h));
+  const totalIdx = headers.findIndex(h => /মোট|total|সর্বমোট/i.test(h));
+  const gradeIdx = headers.findIndex(h => /গ্রেড|grade/i.test(h));
+
+  const student = data.rows.find(r => {
+    const rv = (r[rollIdx >= 0 ? rollIdx : 0] || '').replace(/\s/g, '');
+    const sv = roll.replace(/\s/g, '');
+    return rv === sv || toBengali(rv) === toBengali(sv);
+  });
+
+  if (!student) { notFound.classList.add('show'); return; }
+
+  // Build result display
+  document.getElementById('res-name').textContent = nameIdx >= 0 ? student[nameIdx] : '—';
+  document.getElementById('res-roll-display').textContent = 'রোল: ' + (rollIdx >= 0 ? student[rollIdx] : roll);
+  document.getElementById('res-class-display').textContent = 'শ্রেণি: ' + cls;
+  document.getElementById('res-exam-display').textContent = '' + exam;
+
+  // Table headers (exclude name, roll for subject table)
+  const subjectCols = headers.map((h, i) => ({ h, i }))
+    .filter(({ h }) => !/রোল|roll|নাম|name/i.test(h));
+
+  const thead = document.getElementById('result-thead');
+  const tbody = document.getElementById('result-tbody');
+
+  thead.innerHTML = '<th>বিষয়</th><th>নম্বর / তথ্য</th>';
+  tbody.innerHTML = subjectCols.map(({ h, i }) => {
+    const val = student[i] || '—';
+    const isGrade = /গ্রেড|grade/i.test(h);
+    const cell = isGrade ? `<span class="grade-badge grade-${val.toUpperCase()}">${val}</span>` : val;
+    return `<tr><td>${h}</td><td>${cell}</td></tr>`;
+  }).join('');
+
+  // Summary
+  const total = totalIdx >= 0 ? student[totalIdx] : '—';
+  const grade = gradeIdx >= 0 ? student[gradeIdx] : '—';
+  const pos = getPosition(data.rows, totalIdx, student[totalIdx]);
+
+  document.getElementById('result-summary').innerHTML = `
+    <div class="summary-card"><div class="summary-label">মোট নম্বর</div><div class="summary-value">${total}</div></div>
+    <div class="summary-card"><div class="summary-label">গ্রেড</div><div class="summary-value">${grade}</div></div>
+    <div class="summary-card"><div class="summary-label">মেধাক্রম</div><div class="summary-value">${pos}</div></div>
+  `;
+
+  resultBox.classList.add('show');
+}
+
+// ========== HELPERS ==========
+function getPosition(rows, totalIdx, myTotal) {
+  if (totalIdx < 0 || !myTotal) return '—';
+  const sorted = [...rows].map(r => parseFloat((r[totalIdx] || '0').replace(/[^\d.]/g, '')) || 0)
+    .sort((a, b) => b - a);
+  const myVal = parseFloat((myTotal || '0').replace(/[^\d.]/g, '')) || 0;
+  const pos = sorted.indexOf(myVal) + 1;
+  return pos > 0 ? pos + '/' + rows.length : '—';
+}
+
+function toBengali(s) {
+  const map = {'০':'0','১':'1','২':'2','৩':'3','৪':'4','৫':'5','৬':'6','৭':'7','৮':'8','৯':'9'};
+  return s.replace(/[০-৯]/g, d => map[d] || d);
+}
+
+function showAlert(el, cls, msg) {
+  el.className = 'alert ' + cls + ' show';
+  el.textContent = msg;
+  setTimeout(() => el.classList.remove('show'), 5000);
+}
+
+// ========== INIT ==========
+populateSearchDropdowns();
+</script>
+</body>
+</html>
